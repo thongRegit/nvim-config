@@ -1,4 +1,6 @@
 vim.cmd("let g:netrw_liststyle = 3")
+vim.cmd("filetype plugin on")
+vim.cmd("syntax on")
 
 local opt = vim.opt
 

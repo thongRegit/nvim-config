@@ -36,11 +36,6 @@ return {
 				enable = true,
 			},
 
-			-- Enable autotagging (nvim-ts-autotag)
-			autotag = {
-				enable = true,
-			},
-
 			-- Ensure these language parsers are installed
 			ensure_installed = {
 				"json",
@@ -85,5 +80,6 @@ return {
 		vim.opt.foldmethod = "expr"
 		vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 		vim.opt.foldenable = false -- Disable folding by default
+		require("nvim-ts-autotag").setup()
 	end,
 }
