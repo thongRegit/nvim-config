@@ -85,27 +85,17 @@ return {
 			end,
 		})
 
-		local function lsp_organize_imports()
-			local params = {
-				command = "_typescript.organizeImports",
-				arguments = { vim.api.nvim_buf_get_name(0) },
-				title = "Organize Imports",
-			}
-			vim.lsp.buf.execute_command(params)
-		end
-
 		-- Autocommand to organize imports on save
 		vim.api.nvim_create_autocmd("BufWritePre", {
 			group = augroup("organize_imports", {}),
-			pattern = { "*.php", "*.js", "*.jsx", "*.ts", "*.tsx", "*.vue" },
-
+			pattern = { "*.js", "*.jsx", "*.ts", "*.tsx", "*.vue" }, -- Restrict to TypeScript files
 			callback = function()
-				-- Request code actions for organizing imports
-				local params = vim.lsp.util.make_range_params()
-				params.context = { only = { "source.organizeImports" } }
-				local responses = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 1000)
-
-				lsp_organize_imports()
+				local params = {
+					command = "_typescript.organizeImports",
+					arguments = { vim.api.nvim_buf_get_name(0) },
+					title = "Organize Imports",
+				}
+				vim.lsp.buf.execute_command(params)
 			end,
 		})
 
@@ -124,8 +114,8 @@ return {
 					},
 				})
 			end,
-			["tsserver"] = function()
-				lspconfig["tsserver"].setup({
+			["ts_ls"] = function()
+				lspconfig["ts_ls"].setup({
 					capabilities = capabilities,
 					on_attach = function(client, _)
 						client.server_capabilities.documentFormattingProvider = false -- Prettier formatting
@@ -154,6 +144,11 @@ return {
 							telemetry = { enable = false },
 						},
 					},
+				})
+			end,
+			["phpactor"] = function()
+				lspconfig["phpactor"].setup({
+					capabilities = capabilities,
 				})
 			end,
 		})
