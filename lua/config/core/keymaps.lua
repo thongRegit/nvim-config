@@ -26,8 +26,5 @@ keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer
 -- Open terminal
 keymap.set("n", "<leader>tt", ":terminal<CR>", { desc = "Open terminal" })
 
--- Exit terminal mode to normal mode
-keymap.set("t", "jk", "<C-\\><C-n>", { desc = "Exit terminal mode with jk" })
-
 -- Open Lazy
-vim.keymap.set("n", "<leader>ll", ":Lazy<CR>", { noremap = true, silent = true })
+keymap.set("n", "<leader>ll", ":Lazy<CR>", { noremap = true, silent = true })
