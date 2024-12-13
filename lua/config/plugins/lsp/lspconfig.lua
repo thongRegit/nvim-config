@@ -63,6 +63,8 @@ return {
         opts.desc = "Code actions"
         keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
 
+        -- After change name must excuted command ":wa" to update change for all buffer
+        -- Because vim.lsp.buf.rename only apply for file is opened
         opts.desc = "Rename symbol"
         keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { buffer = ev.buf, silent = true, noremap = true })
 
