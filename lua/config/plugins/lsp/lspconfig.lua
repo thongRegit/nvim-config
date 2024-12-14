@@ -34,6 +34,11 @@ return {
       update_in_insert = false,
       severity_sort = true,
     })
+    -- Force type for php
+    vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+      pattern = "*.php",
+      command = "LspStart phpactor",
+    })
 
     -- Enhanced capabilities for autocompletion
     local capabilities = cmp_nvim_lsp.default_capabilities()
@@ -88,6 +93,9 @@ return {
 
         opts.desc = "Format document"
         keymap.set("n", "<leader>fd", vim.lsp.buf.format, opts)
+
+        opts.desc = "Restart LSP"
+        keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
       end,
     })
 
@@ -109,6 +117,12 @@ return {
     mason_lspconfig.setup_handlers({
       function(server_name)
         lspconfig[server_name].setup({ capabilities = capabilities })
+      end,
+      ["phpactor"] = function()
+        lspconfig["phpactor"].setup({
+          capabilities = capabilities,
+          root_dir = lspconfig.util.root_pattern("composer.json", ".git") or vim.loop.cwd(),
+        })
       end,
       ["intelephense"] = function()
         lspconfig["intelephense"].setup({
@@ -150,11 +164,6 @@ return {
               telemetry = { enable = false },
             },
           },
-        })
-      end,
-      ["phpactor"] = function()
-        lspconfig["phpactor"].setup({
-          capabilities = capabilities,
         })
       end,
     })
