@@ -49,22 +49,25 @@ return {
       callback = function(ev)
         local opts = { buffer = ev.buf, silent = true }
 
-        -- Add descriptions for keymaps
+        -- Tìm references
         opts.desc = "Find references"
-        keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts)
+        keymap.set("n", "gR", "<cmd>FzfLua lsp_references<CR>", opts)
 
+        -- Go to declaration
         opts.desc = "Go to declaration"
         keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 
+        -- Tìm definitions
         opts.desc = "Find definitions"
-        keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
+        keymap.set("n", "gd", "<cmd>FzfLua lsp_definitions<CR>", opts)
 
+        -- Tìm implementations
         opts.desc = "Find implementations"
-        keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
+        keymap.set("n", "gi", "<cmd>FzfLua lsp_implementations<CR>", opts)
 
+        -- Tìm type definitions
         opts.desc = "Find type definitions"
-        keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
-
+        keymap.set("n", "gt", "<cmd>FzfLua lsp_typedefs<CR>", opts)
         opts.desc = "Code actions"
         keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
 
