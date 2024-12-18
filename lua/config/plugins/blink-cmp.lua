@@ -8,7 +8,7 @@ return {
     keymap = {
       ["<C-j>"] = { "select_prev", "fallback" },
       ["<C-k>"] = { "select_next", "fallback" },
-      ["<CR>"] = { "select_and_accept" },
+      ["<CR>"] = { "accept", "fallback" },
     },
     appearance = {
       use_nvim_cmp_as_default = true,
