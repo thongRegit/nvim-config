@@ -107,12 +107,12 @@ return {
       files = {
         cmd = "fd --type f --hidden --exclude .git", -- Tìm file bằng fd
         prompt = "🔍 Find Files❯ ",
-        previewer = "bat", -- Sử dụng bat để hiển thị nội dung file
+        previewer = "builtin", -- Sử dụng bat để hiển thị nội dung file
       },
       keymap = {
         fzf = {
-          ["<C-k>"] = "up", -- Di chuyển đến kết quả trước
-          ["<C-j>"] = "down", -- Di chuyển đến kết quả tiếp theo
+          ["ctrl-k"] = "up", -- Di chuyển đến kết quả trước
+          ["ctrl-j"] = "down", -- Di chuyển đến kết quả tiếp theo
           ["ctrl-d"] = "preview-page-down", -- Cuộn preview xuống
           ["ctrl-u"] = "preview-page-up", -- Cuộn preview lên
           ["ctrl-q"] = "select-all+accept", -- Chọn tất cả và xác nhận
