@@ -19,4 +19,8 @@ require("lazy").setup({ { import = "config.plugins" }, { import = "config.plugin
   change_detection = {
     notify = false,
   },
+  rocks = {
+    enabled = true, -- Kích hoạt luarocks nếu cần
+    hererocks = false, -- Vô hiệu hóa hererocks (sử dụng Lua hệ thống)
+  },
 })

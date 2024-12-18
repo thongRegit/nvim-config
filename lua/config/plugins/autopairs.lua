@@ -2,7 +2,7 @@ return {
   "windwp/nvim-autopairs",
   event = { "InsertEnter" },
   dependencies = {
-    "hrsh7th/nvim-cmp",
+    "saghen/blink.cmp",
   },
   config = function()
     -- import nvim-autopairs
@@ -28,4 +28,3 @@ return {
     cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
   end,
 }
-

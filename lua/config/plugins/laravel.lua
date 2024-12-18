@@ -12,10 +12,15 @@ return {
     { "<leader>lr", ":FzfLua grep { search = 'GET\\|POST\\|PUT\\|DELETE', prompt = 'Routes❯ ' }<cr>" },
     { "<leader>lm", ":FzfLua grep_cword<cr>" },
   },
+  ft = "php", -- Chỉ tải khi mở file PHP
+  cond = function()
+    local root_dir = vim.loop.cwd()
+    return vim.fn.filereadable(root_dir .. "/artisan") == 1 -- Chỉ load nếu có file artisan
+  end,
   event = { "VeryLazy" },
   config = function()
     require("laravel").setup({
-      -- Tùy chỉnh options nếu cần
+      root_dir = vim.loop.cwd(),
     })
 
     -- Tạo các chức năng FzfLua tùy chỉnh cho Laravel
