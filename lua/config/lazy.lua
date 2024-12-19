@@ -23,4 +23,7 @@ require("lazy").setup({ { import = "config.plugins" }, { import = "config.plugin
     enabled = true, -- Kích hoạt luarocks nếu cần
     hererocks = false, -- Vô hiệu hóa hererocks (sử dụng Lua hệ thống)
   },
+  ui = {
+    border = "rounded", -- Thêm viền bo tròn cho popup
+  },
 })

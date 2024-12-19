@@ -3,7 +3,7 @@ return {
   dependencies = {
     "tpope/vim-dotenv",
     "ibhagwan/fzf-lua",
-    "MunifTanjim/nui.nvim",
+    -- "MunifTanjim/nui.nvim",
     "kevinhwang91/promise-async",
   },
   cmd = { "Laravel" },
