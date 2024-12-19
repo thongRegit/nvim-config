@@ -22,31 +22,54 @@ return {
         view = "mini",
       },
     },
+    cmdline = {
+      enabled = true, -- Bật cmdline
+      view = "cmdline_popup", -- Hiển thị cmdline ở giữa màn hình
+      format = {
+        cmdline = { pattern = "^:", icon = " ", lang = "vim" },
+        search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex" },
+        search_up = { kind = "search", pattern = "^%?", icon = " ", lang = "regex" },
+      },
+    },
+    views = {
+      cmdline_popup = {
+        position = {
+          row = "50%", -- Hiển thị ở giữa màn hình theo chiều dọc
+          col = "50%", -- Hiển thị ở giữa màn hình theo chiều ngang
+        },
+        size = {
+          width = 60, -- Chiều rộng cmdline
+          height = 1, -- Chiều cao tự động
+        },
+        border = {
+          style = "rounded", -- Viền bo tròn
+          padding = { 0, 1 }, -- Khoảng cách giữa nội dung và viền
+        },
+      },
+      popupmenu = {
+        relative = "editor",
+        position = {
+          row = "50%",
+          col = "50%",
+        },
+        size = {
+          width = 60,
+          height = 1,
+        },
+        border = {
+          style = "rounded",
+          padding = { 0, 1 },
+        },
+        win_options = {
+          winblend = 50, -- Tạo hiệu ứng mờ
+        },
+      },
+    },
     presets = {
-      bottom_search = true,
-      command_palette = true,
-      long_message_to_split = true,
+      bottom_search = false, -- Tắt thanh tìm kiếm ở dưới màn hình
+      command_palette = true, -- Hiển thị cmdline ở giữa màn hình
+      long_message_to_split = true, -- Chuyển thông báo dài vào split
+      lsp_doc_border = true, -- Thêm viền cho hover docs và signature help
     },
   },
-  -- stylua: ignore
-  keys = {
-    { "<leader>sn", "", desc = "+noice"},
-    { "<S-Enter>", function() require("noice").redirect(vim.fn.getcmdline()) end, mode = "c", desc = "Redirect Cmdline" },
-    { "<leader>snl", function() require("noice").cmd("last") end, desc = "Noice Last Message" },
-    { "<leader>snh", function() require("noice").cmd("history") end, desc = "Noice History" },
-    { "<leader>sna", function() require("noice").cmd("all") end, desc = "Noice All" },
-    { "<leader>snd", function() require("noice").cmd("dismiss") end, desc = "Dismiss All" },
-    { "<leader>snt", function() require("noice").cmd("pick") end, desc = "Noice Picker (Telescope/FzfLua)" },
-    { "<c-f>", function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end, silent = true, expr = true, desc = "Scroll Forward", mode = {"i", "n", "s"} },
-    { "<c-b>", function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, silent = true, expr = true, desc = "Scroll Backward", mode = {"i", "n", "s"}},
-  },
-  config = function(_, opts)
-    -- HACK: noice shows messages from before it was enabled,
-    -- but this is not ideal when Lazy is installing plugins,
-    -- so clear the messages in this case.
-    if vim.o.filetype == "lazy" then
-      vim.cmd([[messages clear]])
-    end
-    require("noice").setup(opts)
-  end,
 }

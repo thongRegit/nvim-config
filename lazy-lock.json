@@ -8,7 +8,7 @@
   "dressing.nvim": { "branch": "master", "commit": "fc78a3ca96f4db9f8893bb7e2fd9823e0780451b" },
   "fidget.nvim": { "branch": "main", "commit": "9238947645ce17d96f30842e61ba81147185b657" },
   "friendly-snippets": { "branch": "main", "commit": "efff286dd74c22f731cdec26a70b46e5b203c619" },
-  "fzf-lua": { "branch": "main", "commit": "29e8180cd395f4a2e8871ad45ef9767bbe8d381b" },
+  "fzf-lua": { "branch": "main", "commit": "8a5eb31cbedf67ac81dd23c72497674f9d0d2d78" },
   "gitsigns.nvim": { "branch": "main", "commit": "5f808b5e4fef30bd8aca1b803b4e555da07fc412" },
   "inc-rename.nvim": { "branch": "main", "commit": "f4e13df6e2d0b3177a7305dbc1cc7f7ea44b94f1" },
   "incline.nvim": { "branch": "main", "commit": "16fc9c073e3ea4175b66ad94375df6d73fc114c0" },
