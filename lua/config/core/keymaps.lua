@@ -30,8 +30,5 @@ keymap.set(
   { desc = "Open current buffer in new tab", noremap = true, silent = true }
 )
 
--- Open terminal
-keymap.set("n", "<leader>tt", ":terminal<CR>", { desc = "Open terminal", noremap = true, silent = true })
-
 -- Open Lazy plugin manager
 keymap.set("n", "<leader>ll", ":Lazy<CR>", { desc = "Open Lazy plugin manager", noremap = true, silent = true })
