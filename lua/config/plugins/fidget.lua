@@ -1,15 +1,17 @@
 return {
   "j-hui/fidget.nvim",
   opts = {
-    sources = {
-      ["*"] = {
-        ignore = false, -- Không bỏ qua nguồn nào
+    notification = {
+      window = {
+        winblend = 0,
+        border = "none",
+      },
+      text = {
+        spinner = "dots", -- Kiểu spinner (dạng chấm động)
+        done = "✔", -- Ký hiệu hiển thị khi hoàn thành
       },
     },
-    --[[ text = { ]]
-    --[[   spinner = "dots", -- Kiểu spinner (dạng chấm động) ]]
-    --[[   done = "✔", -- Ký hiệu hiển thị khi hoàn thành ]]
-    --[[ }, ]]
+
     --[[ align = { ]]
     --[[   bottom = true, -- Đặt spinner ở dưới cùng ]]
     --[[   right = true, -- Đặt spinner ở bên phải ]]
