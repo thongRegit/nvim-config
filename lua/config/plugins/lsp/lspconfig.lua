@@ -88,5 +88,79 @@ return {
       pattern = "*.php",
       command = "LspStart phpactor",
     })
+
+    vim.api.nvim_create_autocmd("LspAttach", {
+      group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+      callback = function(ev)
+        local keymap = vim.keymap.set
+        local opts = { buffer = ev.buf, silent = true }
+
+        -- Tìm tham chiếu
+        opts.desc = "Find references"
+        keymap("n", "gR", vim.lsp.buf.references, opts)
+
+        -- Đi tới khai báo
+        opts.desc = "Go to declaration"
+        keymap("n", "gD", vim.lsp.buf.declaration, opts)
+
+        -- Đi tới định nghĩa
+        opts.desc = "Find definitions"
+        keymap("n", "gd", vim.lsp.buf.definition, opts)
+
+        -- Tìm các implementation
+        opts.desc = "Find implementations"
+        keymap("n", "gi", vim.lsp.buf.implementation, opts)
+
+        -- Tìm type definitions
+        opts.desc = "Find type definitions"
+        keymap("n", "gt", vim.lsp.buf.type_definition, opts)
+
+        -- Thao tác code
+        opts.desc = "Code actions"
+        keymap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+
+        -- Đổi tên symbol
+        opts.desc = "Rename symbol"
+        keymap("n", "<leader>rn", vim.lsp.buf.rename, opts)
+
+        -- Xem diagnostics của buffer
+        opts.desc = "Buffer diagnostics"
+        keymap("n", "<leader>D", function()
+          vim.diagnostic.setqflist({ open = true })
+        end, opts)
+
+        -- Xem diagnostics của workspace
+        opts.desc = "Workspace diagnostics"
+        keymap("n", "<leader>wD", function()
+          vim.diagnostic.setqflist({ open = true, workspace = true })
+        end, opts)
+
+        -- Xem diagnostic hiện tại
+        opts.desc = "Line diagnostics"
+        keymap("n", "<leader>d", vim.diagnostic.open_float, opts)
+
+        -- Diagnostic trước
+        opts.desc = "Previous diagnostic"
+        keymap("n", "[d", vim.diagnostic.goto_prev, opts)
+
+        -- Diagnostic tiếp theo
+        opts.desc = "Next diagnostic"
+        keymap("n", "]d", vim.diagnostic.goto_next, opts)
+
+        -- Tài liệu hover
+        opts.desc = "Hover documentation"
+        keymap("n", "K", vim.lsp.buf.hover, opts)
+
+        -- Restart LSP
+        opts.desc = "Restart LSP"
+        keymap("n", "<leader>rs", ":LspRestart<CR>", opts)
+
+        -- Format tài liệu
+        opts.desc = "Format document"
+        keymap("n", "<leader>fd", function()
+          vim.lsp.buf.format({ async = true })
+        end, opts)
+      end,
+    })
   end,
 }
