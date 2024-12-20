@@ -8,6 +8,7 @@ return {
     local fzf = require("fzf-lua")
 
     fzf.setup({
+      "telescope", -- Hiển thị như telescope
       winopts = {
         height = 0.85, -- Chiều cao cửa sổ popup
         width = 0.80, -- Chiều rộng cửa sổ popup
@@ -18,6 +19,7 @@ return {
           layout = "horizontal", -- Preview theo chiều dọc
           scrollbar = "border", -- Hiển thị thanh cuộn ở viền
           hidden = "nohidden",
+          defautl = "bat",
         },
       },
       keymap = {
